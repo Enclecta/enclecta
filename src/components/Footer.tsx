@@ -14,12 +14,12 @@ const NAV_GROUPS = [
   {
     title: "Services",
     links: [
-      { label: "Cloud Architecture", href: "#services" },
+      { label: "Custom Websites", href: "#services" },
       { label: "AI & Automation", href: "#services" },
-      { label: "Cybersecurity", href: "#services" },
+      { label: "E-Commerce Websites", href: "#services" },
       { label: "Product Engineering", href: "#services" },
-      { label: "Data & Analytics", href: "#services" },
-      { label: "Digital Strategy", href: "#services" },
+      { label: "Web Applications", href: "#services" },
+      { label: "Social Media Management", href: "#services" },
     ],
   },
   {
@@ -36,10 +36,10 @@ const NAV_GROUPS = [
     title: "Connect",
     links: [
       { label: "Get in Touch", href: "#contact" },
-      { label: "LinkedIn", href: "#" },
-      { label: "X / Twitter", href: "#" },
-      { label: "GitHub", href: "#" },
-      { label: "hello@enclecta.com", href: "mailto:hello@enclecta.com" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/company/enclecta/" },
+      { label: "X / Twitter", href: "https://x.com/enclecta" },
+      // { label: "GitHub", href: "#" },
+      { label: "info@enclecta.com", href: "mailto:info@enclecta.com" },
     ],
   },
 ];
@@ -114,7 +114,7 @@ export default function Footer() {
           fontFamily: "var(--font-display)",
           fontSize: "clamp(80px, 20vw, 260px)",
           color: "transparent",
-          WebkitTextStroke: "1px rgba(255,255,255,0.025)",
+          WebkitTextStroke: "1px rgba(255, 255, 255, 0.17)",
           lineHeight: 0.85,
           paddingBottom: "0px",
           letterSpacing: "-0.04em",
@@ -167,6 +167,8 @@ export default function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-sm text-[var(--color-mist)] hover:text-[var(--color-white)] transition-colors duration-200"
                       >
                         {link.label}

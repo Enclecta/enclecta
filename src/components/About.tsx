@@ -97,10 +97,10 @@ export default function About() {
       {/* Large ghost typography */}
       <div
         aria-hidden="true"
-        className="pointer-events-none select-none absolute -bottom-8 -left-6 text-[clamp(100px,18vw,220px)] font-bold leading-none text-[var(--color-obsidian)] tracking-tighter"
+        className="pointer-events-none select-none absolute -bottom-8 left-60 text-[clamp(100px,18vw,220px)] font-bold leading-none text-[var(--color-obsidian)] tracking-tighter"
         style={{
           fontFamily: "var(--font-display)",
-          WebkitTextStroke: "1px rgba(255,255,255,0.03)",
+          WebkitTextStroke: "1px rgba(255, 255, 255, 0.17)",
         }}
       >
         ENCLECTA
