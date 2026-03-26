@@ -1,0 +1,270 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────
+   DESIGN TOKENS — Enclecta Design System
+   ───────────────────────────────────────── */
+:root {
+  /* --- Core Palette --- */
+  --color-void: #080808;
+  --color-obsidian: #0e0e0f;
+  --color-coal: #161618;
+  --color-graphite: #1e1e21;
+  --color-ash: #2a2a2e;
+  --color-slate: #5b5b5d;
+  --color-mist: #d8d8e3;
+  --color-ghost: #d1d1d9;
+  --color-silver: #e2e2f0;
+  --color-white: #f0f0f5;
+
+  /* --- Accent Palette --- */
+  --color-gold: #fe7b00;
+  --color-gold-dim: #8a6f2e;
+  --color-gold-pale: #ff9100;
+  --color-blue: #4a7fa5;
+  --color-red: #8b2e2e;
+
+  /* --- Surfaces --- */
+  --surface-base: var(--color-void);
+  --surface-raised: var(--color-obsidian);
+  --surface-float: var(--color-coal);
+  --surface-glass: rgba(14, 14, 15, 0.72);
+  --surface-glass-border: rgba(255, 255, 255, 0.06);
+
+  /* --- Typography (Next.js injected font vars from layout.tsx) --- */
+  --font-display: var(--font-syne, "Syne", sans-serif);
+  --font-body: var(--font-inter, "Inter", sans-serif);
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* --- Spacing scale (8px base) --- */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 64px;
+  --space-2xl: 128px;
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.65);
+  --shadow-glow-gold: 0 0 40px rgba(201, 168, 76, 0.12);
+
+  /* --- Border radius --- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+
+  /* --- Transitions --- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─────────────────────────────────────────
+   TAILWIND v4 THEME EXTENSION
+   ───────────────────────────────────────── */
+@theme inline {
+  --color-void: var(--color-void);
+  --color-obsidian: var(--color-obsidian);
+  --color-coal: var(--color-coal);
+  --color-graphite: var(--color-graphite);
+  --color-ash: var(--color-ash);
+  --color-slate: var(--color-slate);
+  --color-mist: var(--color-mist);
+  --color-ghost: var(--color-ghost);
+  --color-silver: var(--color-silver);
+  --color-white: var(--color-white);
+  --color-gold: var(--color-gold);
+  --color-gold-dim: var(--color-gold-dim);
+  --color-gold-pale: var(--color-gold-pale);
+  --color-blue-accent: var(--color-blue);
+  --color-red-accent: var(--color-red);
+}
+
+/* ─────────────────────────────────────────
+   RESET & BASE
+   ───────────────────────────────────────── */
+/* *,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+} */
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-void);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+/* Smooth custom scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-void);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-slate);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-dim);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-gold-dim);
+  color: var(--color-white);
+}
+
+/* ─────────────────────────────────────────
+   TYPOGRAPHY
+   ───────────────────────────────────────── */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-white);
+}
+
+p {
+  color: var(--color-ghost);
+  line-height: 1.7;
+}
+
+/* ─────────────────────────────────────────
+   UTILITY CLASSES
+   ───────────────────────────────────────── */
+
+/* Glass surface */
+.glass {
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid var(--surface-glass-border);
+}
+
+/* Noise grain overlay */
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 10;
+  mix-blend-mode: overlay;
+}
+
+/* Text reveal clip wrapper */
+.clip-reveal {
+  overflow: hidden;
+  display: block;
+}
+
+/* Gold accent line */
+.accent-line {
+  width: 40px;
+  height: 1px;
+  background: var(--color-gold);
+  display: inline-block;
+}
+
+/* Focus ring */
+*:focus-visible {
+  outline: 1px solid var(--color-gold);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+/* ─────────────────────────────────────────
+   KEYFRAMES
+   ───────────────────────────────────────── */
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes float-x {
+  0%,
+  100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(12px);
+  }
+}
+
+@keyframes rotate-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-scale {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+@keyframes scroll-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(6px);
+    opacity: 0.3;
+  }
+}
+
+.animate-float-y {
+  animation: float-y 6s ease-in-out infinite;
+}
+.animate-float-x {
+  animation: float-x 8s ease-in-out infinite;
+}
+.animate-rotate {
+  animation: rotate-slow 20s linear infinite;
+}
+.animate-pulse-sc {
+  animation: pulse-scale 4s ease-in-out infinite;
+}
+.animate-scroll-b {
+  animation: scroll-bounce 1.8s ease-in-out infinite;
+}
